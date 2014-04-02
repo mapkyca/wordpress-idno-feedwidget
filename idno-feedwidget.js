@@ -19,7 +19,11 @@ function idno_feedwidget(data) {
             if (entry.object.objectType == 'image') {
                 var attachments = "";
                 entry.object.attachments.forEach(function (attachment){
-                    attachments += "<a class=\"image\" rel=\"lightbox\" href=\"" + attachment.url +"\"><img style=\"width:100px;\" src=\"" + attachment.url + "\" /></a>";
+		    if ((typeof entry.object.thumbnails != 'undefined') && (typeof entry.object.thumbnails.small != 'undefined')) {
+			attachments += "<a class=\"image\" rel=\"lightbox\" href=\"" + attachment.url +"\"><img style=\"width:100px;\" src=\"" + entry.object.thumbnails.small + "\" /></a>";
+		    }
+		    else
+			attachments += "<a class=\"image\" rel=\"lightbox\" href=\"" + attachment.url +"\"><img style=\"width:100px;\" src=\"" + attachment.url + "\" /></a>";
                 });
                 item.innerHTML = "<a title=\"" + entry.actor.displayName + "\" href=\"" + entry.actor.url + "\" target=\"_blank\"><img style=\"float: left; margin-right: 5px; width:25px;\" alt=\"" + entry.actor.displayName + "\" src=\"" + entry.actor.image.url + "\" /></a>" +
                         "<a title=\"" + entry.published + "\" href=\"" + entry.object.url + "\" target=\"_blank\">" + entry.object.displayName + "</a>" + "<div style=\"text-align: center;\" class=\"attachments\">" + attachments + "</div>";
