@@ -29,7 +29,7 @@ function idno_feedwidget(data) {
                         "<a title=\"" + entry.published + "\" href=\"" + entry.object.url + "\" target=\"_blank\">" + entry.object.displayName + "</a>" + "<div style=\"text-align: center;\" class=\"attachments\">" + attachments + "</div>";
             }
             else {
-                title = entry.object.displayName;
+                title = entry.object.content;
                 if (title.length > 50)
                     title = title.substr(0,50) + '...';
                 item.innerHTML = "<a title=\"" + entry.actor.displayName + "\" href=\"" + entry.actor.url + "\" target=\"_blank\"><img style=\"float: left; margin-right: 5px; width:25px;\" alt=\"" + entry.actor.displayName + "\" src=\"" + entry.actor.image.url + "\" /></a>" +
