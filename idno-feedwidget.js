@@ -16,24 +16,24 @@ function idno_feedwidget(data) {
             var title;
             
             item.class = 'idno-entry idno-entry-' + entry.objectType;
-            if (entry.object.objectType == 'image') {
+            if (entry.objectType == 'image') {
                 var attachments = "";
-                entry.object.attachments.forEach(function (attachment){
-		    if ((typeof entry.object.thumbnails != 'undefined') && (typeof entry.object.thumbnails.small != 'undefined')) {
-			attachments += "<a class=\"image\" rel=\"lightbox\" href=\"" + attachment.url +"\"><img style=\"width:100px;\" src=\"" + entry.object.thumbnails.small + "\" /></a>";
+                entry.attachments.forEach(function (attachment){
+		    if ((typeof entry.thumbnails != 'undefined') && (typeof entry.thumbnails.small != 'undefined')) {
+			attachments += "<a class=\"image\" rel=\"lightbox\" href=\"" + attachment.url +"\"><img style=\"width:100px;\" src=\"" + entry.thumbnails.small + "\" /></a>";
 		    }
 		    else
 			attachments += "<a class=\"image\" rel=\"lightbox\" href=\"" + attachment.url +"\"><img style=\"width:100px;\" src=\"" + attachment.url + "\" /></a>";
                 });
                 item.innerHTML = "<a title=\"" + entry.actor.displayName + "\" href=\"" + entry.actor.url + "\" target=\"_blank\"><img style=\"float: left; margin-right: 5px; width:25px;\" alt=\"" + entry.actor.displayName + "\" src=\"" + entry.actor.image.url + "\" /></a>" +
-                        "<a title=\"" + entry.published + "\" href=\"" + entry.object.url + "\" target=\"_blank\">" + entry.object.displayName + "</a>" + "<div style=\"text-align: center;\" class=\"attachments\">" + attachments + "</div>";
+                        "<a title=\"" + entry.published + "\" href=\"" + entry.url + "\" target=\"_blank\">" + entry.displayName + "</a>" + "<div style=\"text-align: center;\" class=\"attachments\">" + attachments + "</div>";
             }
             else {
-                title = entry.object.content;
+                title = entry.content;
                 if (title.length > 50)
                     title = title.substr(0,50) + '...';
                 item.innerHTML = "<a title=\"" + entry.actor.displayName + "\" href=\"" + entry.actor.url + "\" target=\"_blank\"><img style=\"float: left; margin-right: 5px; width:25px;\" alt=\"" + entry.actor.displayName + "\" src=\"" + entry.actor.image.url + "\" /></a>" +
-                    "<a title=\"" + entry.published + "\" href=\"" + entry.object.url + "\" target=\"_blank\">" + title + "</a>";
+                    "<a title=\"" + entry.published + "\" href=\"" + entry.url + "\" target=\"_blank\">" + title + "</a>";
             }
 
             document.getElementById(widget_id + '-content').appendChild(item);
